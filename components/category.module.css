@@ -1,0 +1,13 @@
+.category li a  {
+  color: #417db9;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 0;
+  word-wrap: break-word;
+  /* padding: 4px 5px 4px 17px; */
+  display:block;
+  
+}
+.category li{
+  list-style:none;
+}
