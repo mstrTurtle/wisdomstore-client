@@ -16,18 +16,19 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { EmojiEvents, Home, LineAxis, People, Warehouse } from '@mui/icons-material';
+import { EmojiEvents, Home, Info, LineAxis, People, Receipt, Warehouse } from '@mui/icons-material';
 
 const lists = [
     { text: '仪表盘', icon: <LineAxis /> },
-    { text: '销售冠军', icon: <EmojiEvents/> },
+    { text: '销售榜单', icon: <EmojiEvents/> },
     { text: '库存管理', icon: <Warehouse/> },
     { text: '人员管理', icon: <People/> },
+    { text: '订单管理', icon: <Receipt/> },
 ]
 
 const lists2 = [
-    { text: '返回主页', icon: <LineAxis /> },
-    { text: '关于', icon: <EmojiEvents/> },
+    { text: '返回主页', icon: <Home /> },
+    { text: '关于', icon: <Info/> },
 ]
 
 const drawerWidth = 240;
