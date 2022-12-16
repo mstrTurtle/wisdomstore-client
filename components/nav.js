@@ -19,6 +19,7 @@ import { ShoppingCart } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import MyModal from './modal';
 import Cart from './cart';
+import UserStatus from './userstatus';
 
 const pages = [{name:'浏览',link:'/posts/first-post'}, {name:'后端',link:'/backend'}, {name:'首页',link:'/'}];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -198,6 +199,7 @@ function NavBar() {
           </MyModal>
 
           <Box sx={{ flexGrow: 0 }}>
+            <UserStatus/>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

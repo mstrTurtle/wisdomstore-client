@@ -1,10 +1,32 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import MyModal from './modal';
-export default function FormPropsTextFields() {
+import axios from 'axios';
+export default function FormPropsTextFields({onSuccess}) {
   const [open, setOpen] = React.useState(false);
+  var name = React.useRef('')
+  var password = React.useRef('')
+  var email = React.useRef('')
+
+  var register = (name,password,email)=>{
+    console.log(name)
+    console.log(password)
+    console.log(email)
+    axios.get('http://localhost:8000/register',{
+      params:{
+        name:name,
+        password:password,
+        email:email,
+        role:'common',
+      }
+    }).then((resp)=>{
+      setOpen(true) ;
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
   return (
     <Box
       component="form"
@@ -14,28 +36,38 @@ export default function FormPropsTextFields() {
       noValidate
       autoComplete="off"
     >
-                    <MyModal open={open}>
-            <div>注册成功!</div>
-                <Button variant="contained" onClick={() => { setOpen(false) }}>好</Button>
-            </MyModal>
-        <div>
+      <MyModal open={open}>
+        <div>注册成功!</div>
+        <Button variant="contained" onClick={() => { setOpen(false);onSuccess(); }}>好</Button>
+      </MyModal>
+      <div>
         <TextField
           id="outlined-helperText"
           label="用户名"
-          defaultValue="Default Value"
           helperText="请输入良好账户名"
+          inputRef={name}
         />
-        </div><div>
-         <TextField
+      </div><div>
+        <TextField
           id="outlined-password-input"
           label="密码"
           type="password"
           autoComplete="current-password"
+          inputRef={password}
         />
-        </div>
-        <div>
-            <Button variant='contained' onClick={()=>setOpen(true)}>提交</Button>
-        </div>
+      </div><div>
+        <TextField
+          id="outlined-input"
+          label="邮箱"
+          inputRef={email}
+        />
+      </div>
+      <div>
+        <Stack direction={'row'} spacing={2}>
+        <Button variant='contained' onClick={() => {register(name.current.value,password.current.value,email.current.value)}}>提交</Button>
+        <Button variant='contained' onClick={() => {onSuccess() }}>取消</Button>
+        </Stack>
+      </div>
 
     </Box>
   );
