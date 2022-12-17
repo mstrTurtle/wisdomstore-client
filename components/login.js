@@ -4,21 +4,33 @@ import TextField from '@mui/material/TextField';
 import { Button, Stack } from '@mui/material';
 import MyModal from './modal';
 import axios from 'axios';
-export default function FormPropsTextFields({onSuccess}) {
+import { Router } from 'next/router';
+export default function FormPropsTextFields({onSuccess,onFailure}) {
   const [open, setOpen] = React.useState(false);
+  const [fail,setFail] = React.useState(false);
   var name = React.useRef('')
   var password = React.useRef('')
   var login = (name,password)=>{
-        console.log(name)
-        console.log(password)
+        
         axios.get('http://localhost:8000/login',{
         params:{
             name:name,
             password:password,
         }
         }).then((resp)=>{
-            setOpen(true) ;
+            console.log(name)
+            console.log(password)
+            console.log('data:')
+            console.log(resp.data)
+            if(resp.data.status=='Ok'){
+                setOpen(true) ;
+                localStorage.setItem('user_id',resp.data.user_id)
+                Router.reload(window.location.pathname);
+            }else{
+                setFail(true)
+            }
         }).catch(function (error) {
+            setFail(true)
             console.log(error);
         })
     }
@@ -35,12 +47,16 @@ export default function FormPropsTextFields({onSuccess}) {
         <div>登录成功!</div>
         <Button variant="contained" onClick={() => { setOpen(false);onSuccess(); }}>好</Button>
       </MyModal>
+      <MyModal open={fail}>
+        <div>登录失败!</div>
+        <Button variant="contained" onClick={() => { setFail(false) }}>好</Button>
+      </MyModal>
       <div>
         <TextField
           id="outlined-helperText"
           label="用户名"
           defaultValue="Default Value"
-          helperText="请输入良好账户名"
+          helperText="请输入账户名"
           inputRef={name}
         />
       </div><div>

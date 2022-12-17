@@ -6,6 +6,7 @@ import MyModal from './modal';
 import axios from 'axios';
 export default function FormPropsTextFields({onSuccess}) {
   const [open, setOpen] = React.useState(false);
+  const [fail,setFail] = React.useState(false);
   var name = React.useRef('')
   var password = React.useRef('')
   var email = React.useRef('')
@@ -22,7 +23,12 @@ export default function FormPropsTextFields({onSuccess}) {
         role:'common',
       }
     }).then((resp)=>{
-      setOpen(true) ;
+      if(resp.data.status=='Ok'){
+          setOpen(true) ;
+          localStorage.setItem('user_id',resp.data.user_id)
+      }else{
+          setFail(true)
+      }
     }).catch(function (error) {
       console.log(error);
     })
@@ -39,6 +45,10 @@ export default function FormPropsTextFields({onSuccess}) {
       <MyModal open={open}>
         <div>注册成功!</div>
         <Button variant="contained" onClick={() => { setOpen(false);onSuccess(); }}>好</Button>
+      </MyModal>
+      <MyModal open={fail}>
+        <div>注册失败!</div>
+        <Button variant="contained" onClick={() => { setFail(false) }}>好</Button>
       </MyModal>
       <div>
         <TextField

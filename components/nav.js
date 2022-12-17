@@ -20,9 +20,14 @@ import { styled, alpha } from '@mui/material/styles';
 import MyModal from './modal';
 import Cart from './cart';
 import UserStatus from './userstatus';
+import Router from 'next/router'
 
 const pages = [{name:'浏览',link:'/posts/first-post'}, {name:'后端',link:'/backend'}, {name:'首页',link:'/'}];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  {text:'Profile', onC:()=>{}}, 
+  {text:'Account', onC:()=>{}},
+  {text:'Logout', onC:()=>{localStorage.removeItem('user_id'); Router.reload(window.location.pathname);}},
+]
 
 
 
@@ -87,6 +92,12 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  if(typeof window !== 'undefined')
+    var user_id = localStorage.getItem('user_id')
+  React.useEffect(()=>{
+    user_id = localStorage.getItem('user_id')
+  })
 
   return (
     <AppBar  style={{ background: '#2E3B55' }}>
@@ -199,10 +210,12 @@ function NavBar() {
           </MyModal>
 
           <Box sx={{ flexGrow: 0 }}>
-            <UserStatus/>
+            {user_id?
+            <>
+            <span>{user_id}</span>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="/images/profile.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -221,12 +234,17 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map(({text,onC}) => (
+                <MenuItem key={text} onClick={()=>{
+                  onC();
+                  handleCloseUserMenu();
+                }}>
+                  <Typography textAlign="center">{text}</Typography>
                 </MenuItem>
               ))}
             </Menu>
+            </>
+            :<UserStatus/>}
           </Box>
         </Toolbar>
       </Container>

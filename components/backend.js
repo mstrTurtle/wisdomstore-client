@@ -16,30 +16,33 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { EmojiEvents, Home, Info, LineAxis, People, Receipt, Warehouse } from '@mui/icons-material';
+import { EmojiEvents, History, Home, Info, LineAxis, People, Receipt, Warehouse } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import GoodTable from './backend/good';
+import { Button } from '@mui/material';
+import AddProduct from './backend/addGood';
 
 const lists = [
-    { text: '仪表盘', icon: <LineAxis /> },
     { text: '销售榜单', icon: <EmojiEvents/> },
-    { text: '库存管理', icon: <Warehouse/> },
-    { text: '人员管理', icon: <People/> },
+    { text: '商品管理', icon: <Warehouse/> },
     { text: '订单管理', icon: <Receipt/> },
-]
-
-const lists2 = [
-    { text: '返回主页', icon: <Home /> },
-    { text: '关于', icon: <Info/> },
+    { text: '浏览历史', icon: <History/> },
 ]
 
 const drawerWidth = 240;
 
 function Backend(props) {
+  const router = useRouter()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const backHome = ()=>{
+    router.push('/')
+  }
 
   const drawer = (
     <div>
@@ -59,16 +62,14 @@ function Backend(props) {
       </List>
       <Divider />
       <List>
-          {lists2.map(({text,icon}, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton>
+          <ListItem key={'回到主页'} disablePadding>
+            <ListItemButton onClick={backHome}>
               <ListItemIcon>
-                {icon}
+                <Home/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'回到主页'} />
             </ListItemButton>
           </ListItem>
-        ))}
       </List>
     </div>
   );
@@ -96,7 +97,7 @@ function Backend(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            传智书城 - 管理后台
           </Typography>
         </Toolbar>
       </AppBar>
@@ -137,7 +138,10 @@ function Backend(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        <Typography paragraph>
+        
+        <GoodTable/>
+        
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -163,7 +167,7 @@ function Backend(props) {
           tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        </Typography> */}
       </Box>
     </Box>
   );

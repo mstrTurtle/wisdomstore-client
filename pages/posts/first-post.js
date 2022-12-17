@@ -11,6 +11,7 @@ import OrderCompleted from '../../components/order/completed';
 import Detail from '../../components/detail';
 import SearchResults from '../../components/searchresults';
 import NavBar from '../../components/nav';
+import { Counter } from '../../components/counter';
 
 export default function FirstPost() {
   return( <div>
@@ -33,6 +34,7 @@ export default function FirstPost() {
       <OrderCompleted></OrderCompleted>
       <Detail></Detail>
       <SearchResults></SearchResults>
+      <Counter></Counter>
     </Layout>
     </div>
   );
