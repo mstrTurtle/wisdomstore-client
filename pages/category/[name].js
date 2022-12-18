@@ -1,21 +1,15 @@
-import { CircularProgress } from "@mui/material"
+import { CircularProgress,Container } from "@mui/material"
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from 'next/router'
 import Link from "next/link"
 import NavBar from "../../components/nav"
 import Layout from "../../components/layout"
-
-var items=[
-    { id:1,name: 'Code Complete', cost: 3.5, count: 2 , picurl:'/'},
-    { id:2,name: 'Compiler: Priciples, Practices', cost: 50, count: 1 , picurl:'/'},
-    { id:3,name: 'Real World Haskell', cost: 30, count: 1 , picurl:'/'}
- ]
-
  var getSearchResults = (name,setResult)=>{
-    axios.get('http://localhost:8000/product/search', {
+    console.log(name)
+    axios.get('http://localhost:8000/product/category', {
         params:{
-            name:name
+            category:name
         }
     }).then((res)=>{
         setResult(res.data)
@@ -58,8 +52,9 @@ export default function SearchResults(){
     return <div>
         <NavBar/>
         <Layout>
-        <h1>搜索{`"${name}"`}的结果</h1>
+        <h1>类型{`"${name}"`}下的所有商品:</h1>
         {elem}
         </Layout>
+
     </div>
 }

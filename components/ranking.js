@@ -8,11 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import { CircularProgress,Button, IconButton } from '@mui/material';
+import { CircularProgress,Button } from '@mui/material';
 import AddProduct from './addGood';
 import MyModal from '../modal';
-import { Delete, Edit } from '@mui/icons-material';
-import EditProduct from './editProduct';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -36,16 +34,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function GoodTable() {
+export default function SaleTable() {
     const [products,setProducts] = React.useState(null)
     const [addOpen,setAddOpen] = React.useState(false)
-    const [editOpen,setEditOpen] = React.useState(false)
-    const [productId,setProductId] = React.useState(null)
 
     if(products==null){
-        axios.get('http://localhost:8000/product/all')
+        axios.get('http://localhost:8000/rank/all')
         .then((resp)=>{
-            setProducts(resp.data.products)
+            setProducts(resp.data.details)
         })
         .catch((e)=>{
             console.log(e)
@@ -65,19 +61,6 @@ export default function GoodTable() {
             setClose={()=>{setAddOpen(false)}}
             />
     </MyModal>
-    <MyModal open={editOpen} >
-        <EditProduct
-            product_id={productId}
-            onSuccess={()=>{
-                    setProducts(null)
-                    setEditOpen(false)
-                }
-            }
-            setClose={()=>{setEditOpen(false)}}
-            />
-    </MyModal>
-   
-       
     <Button variant='contained' onClick={()=>setAddOpen(true)}>添加</Button>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -89,7 +72,6 @@ export default function GoodTable() {
             <StyledTableCell align="right">库存</StyledTableCell>
             <StyledTableCell align="right">图片链接</StyledTableCell>
             <StyledTableCell align="right">描述</StyledTableCell>
-            <StyledTableCell align="right">操作</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -103,23 +85,6 @@ export default function GoodTable() {
               <StyledTableCell align="right">{row.stock}</StyledTableCell>
               <StyledTableCell align="right">{row.imgurl}</StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
-              <StyledTableCell align="right">
-                <IconButton onClick={()=>{setEditOpen(true)}}>
-                    <Edit/>
-                </IconButton>
-                <IconButton onClick={()=>{
-                    axios.get('http://localhost:8000/product/delete',{
-                        params:{
-                            product_id:row.id
-                        }
-                    }).then(resp=>{
-                        setProducts(null) // 强制它刷新
-                    })
-                }}>
-                    <Delete/>
-                </IconButton>
-
-              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

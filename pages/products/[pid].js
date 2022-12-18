@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import NavBar from '../../components/nav'
 import MyModal from '../../components/modal'
+import Layout from '../../components/layout'
 
 var getProductDetail = (pid, updateDetail)=>{
     axios.get('http://localhost:8000/product',{
@@ -70,10 +71,10 @@ const Post = () => {
 
   return <>
   <NavBar></NavBar>
-  {/* <p>Product: {JSON.stringify(detail)}</p> */}
+  <Layout>
   {detail.status=='Ok'?<>
   <h1>{detail.detail.name}</h1>
-  <img src={detail.detail.imgurl}></img>
+  <img src={detail.detail.imgurl} width='50%'></img>
   
   <h2>{`\$${detail.detail.price}`}</h2>
   <p>Category: {detail.detail.category}</p>
@@ -87,6 +88,7 @@ const Post = () => {
   </>:<>
   <CircularProgress/>
   </>}
+    </Layout>
   </>
 }
 

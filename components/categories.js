@@ -2,7 +2,7 @@ import styles from './category.module.css';
 import Link from 'next/link';
 import Layout from './layout';
 var cats = [
-"生物医学",
+"药水",
 "商务管理",
 "化学",
 "计算机科学",
@@ -19,7 +19,7 @@ export default function Category({ children }) {
       
         products.forEach((product) => {
           rows.push(
-           <li key={product} ><Link className={styles.category} href="/">{product}</Link></li>
+           <li key={product} ><Link className={styles.category} href={"/category/"+product}>{product}</Link></li>
           );
         });
 
@@ -34,7 +34,6 @@ export default function Category({ children }) {
     <h1  >按分类浏览</h1>
     <ProductTable className={styles.category} products={cats}/>
     <ul className={styles.category}>
-            <li key={1}><a  href="/">what??</a></li>
             </ul>
   </div>;
 }

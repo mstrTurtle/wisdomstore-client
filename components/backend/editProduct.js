@@ -8,7 +8,7 @@ import UploadButton from '../uploadImageButton';
 function getImgUrlFromUuidName(uuidName){
     return 'http://localhost:8000/pics/?fname=' + uuidName
 }
-export default function AddProduct({onSuccess, setClose}) {
+export default function EditProduct({product_id, onSuccess, setClose}) {
   const [open, setOpen] = React.useState(false);
   const [fail,setFail] = React.useState(false);
   var name = React.useRef('')
@@ -20,10 +20,11 @@ export default function AddProduct({onSuccess, setClose}) {
   const [imgUrl, setImgUrl] = React.useState('')
 
         
-  var add = (name,price,category,stock,description,imgurl)=>{
+  var update = (product_id,name,price,category,stock,description,imgurl)=>{
         
-        axios.get('http://localhost:8000/product/add',{
+        axios.get('http://localhost:8000/product/update',{
         params:{
+            product_id:product_id,
             name:name,
             price:price,
             category:category,
@@ -75,7 +76,8 @@ export default function AddProduct({onSuccess, setClose}) {
                     setFail(true)
                     return
                 }
-                add(
+                update(
+                    product_id,
                     name.current.value,
                     parseFloat(price.current.value),
                     category.current.value,
