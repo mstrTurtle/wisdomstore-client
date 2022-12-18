@@ -9,7 +9,7 @@ var items=[
  ]
 
  var getSearchResults = (name,setResult)=>{
-    axios.get('myapi/product/search', {
+    axios.get('/myapi/product/search', {
         params:{
             name:name
         }

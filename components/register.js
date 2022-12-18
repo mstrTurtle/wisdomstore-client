@@ -15,7 +15,7 @@ export default function FormPropsTextFields({onSuccess}) {
     console.log(name)
     console.log(password)
     console.log(email)
-    axios.get('myapi/register',{
+    axios.get('/myapi/register',{
       params:{
         name:name,
         password:password,

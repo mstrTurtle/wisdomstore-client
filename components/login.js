@@ -12,7 +12,7 @@ export default function FormPropsTextFields({onSuccess,onFailure}) {
   var password = React.useRef('')
   var login = (name,password)=>{
         
-        axios.get('myapi/login',{
+        axios.get('/myapi/login',{
         params:{
             name:name,
             password:password,

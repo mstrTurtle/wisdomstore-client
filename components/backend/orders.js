@@ -43,7 +43,7 @@ export default function OrderTable() {
     const [productId,setProductId] = React.useState(null)
 
     if(products==null){
-        axios.get('myapi/order/all')
+        axios.get('/myapi/order/all')
         .then((resp)=>{
             setProducts(resp.data)
         })
@@ -104,7 +104,7 @@ export default function OrderTable() {
               <StyledTableCell align="right">
                 {row.finishTime==null?
                 <IconButton onClick={()=>{
-                    axios.get('myapi/order/finish',{
+                    axios.get('/myapi/order/finish',{
                         params:{
                             order_id: row.id
                         }
@@ -116,7 +116,7 @@ export default function OrderTable() {
                     <Done/>
                 </IconButton>
                 :<IconButton onClick={()=>{
-                    axios.get('myapi/order/unfinish',{
+                    axios.get('/myapi/order/unfinish',{
                         params:{
                             order_id: row.id
                         }
