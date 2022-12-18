@@ -1,6 +1,6 @@
 import { CircularProgress } from "@mui/material"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from 'next/router'
 import Link from "next/link"
 import NavBar from "../../components/nav"
@@ -29,6 +29,16 @@ export default function SearchResults(){
     var elem = null
     const router = useRouter()
     const {name} = router.query
+    const [latestName,setLatestName] = useState(null)
+    if(!latestName){
+        setLatestName(name)
+    }
+    useEffect(()=>{
+        if(name!=latestName){
+            setLatestName(name)
+            setResult(null)
+        }
+    })
 
     if(result==null){
         elem = <CircularProgress/>

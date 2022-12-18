@@ -1,6 +1,6 @@
 import { CircularProgress } from "@mui/material"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 var items=[
     { id:1,name: 'Code Complete', cost: 3.5, count: 2 , picurl:'/'},
@@ -23,6 +23,10 @@ var items=[
 export default function SearchResults(){
     const [result,setResult] = useState(null)
     var elem = null
+
+    useEffect(()=>{
+        setResult(null)
+    })
 
     if(result==null){
         elem = <CircularProgress/>
