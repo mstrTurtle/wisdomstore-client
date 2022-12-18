@@ -91,7 +91,7 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  var pages = [{name:'浏览',link:'/posts/first-post'}, {name:'首页',link:'/'}];
+  var pages = [ {name:'首页',link:'/'},{name:'新品',link:'/newbooks'}];
   if(typeof window !== 'undefined'){
     var user_id = localStorage.getItem('user_id')
     var user_name = localStorage.getItem('user_name')
@@ -201,7 +201,7 @@ function NavBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search..."
               inputProps={{ 'aria-label': 'search' }}
               onKeyUp={(e)=>{
                 if(e.keyCode===13){
@@ -223,7 +223,7 @@ function NavBar() {
             {user_id?
             <>
             <span>{user_id} - {user_name}</span>
-            <Tooltip title="Open settings">
+            <Tooltip title="个人菜单">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/images/profile.jpg" />
               </IconButton>

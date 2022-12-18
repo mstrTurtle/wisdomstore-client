@@ -71,7 +71,7 @@ export default function MySearchBar({children}){
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="开始搜索"
               inputProps={{ 'aria-label': 'search' }}
             //   onChange={(e)=>{console.log(e.target.value)}}
               onKeyUp={(e)=>{
