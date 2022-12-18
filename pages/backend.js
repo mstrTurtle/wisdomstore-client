@@ -9,7 +9,7 @@ export default function Register() {
      <Box>
         
         <Container >
-            <Backend></Backend>
+            <Backend><h1>欢迎来到传智书城后台</h1></Backend>
            
         </Container>
     </Box></Fragment>

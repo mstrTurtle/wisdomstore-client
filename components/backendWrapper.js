@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Link from 'next/link';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -19,22 +18,22 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { EmojiEvents, History, Home, Info, LineAxis, People, Receipt, Warehouse } from '@mui/icons-material';
 import { useRouter } from 'next/router';
-import GoodTable from './backend/good';
+import GoodTable from '../components/backend/good';
 import { Button } from '@mui/material';
-import AddProduct from './backend/addGood';
+import AddProduct from '../components/backend/addGood';
 
 const lists = [
-    { text: '销售榜单', icon: <EmojiEvents/> , url:'/backend/bestseller'},
-    { text: '商品管理', icon: <Warehouse/> , url:'/backend/goodmanage'},
-    { text: '订单管理', icon: <Receipt/> , url:'/backend/ordermanage'},
-    { text: '浏览历史', icon: <History/> , url:'/backend/browsehistory'},
+    { text: '销售榜单', icon: <EmojiEvents/> },
+    { text: '商品管理', icon: <Warehouse/> },
+    { text: '订单管理', icon: <Receipt/> },
+    { text: '浏览历史', icon: <History/> },
 ]
 
 const drawerWidth = 240;
 
-function Backend(props) {
+function BackendWrapper(props) {
   const router = useRouter()
-  const { window,children } = props;
+  const { window, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -50,16 +49,14 @@ function Backend(props) {
       <Toolbar />
       <Divider />
       <List>
-        {lists.map(({text,icon,url}, index) => (
+        {lists.map(({text,icon}, index) => (
           <ListItem key={index} disablePadding>
-            <Link href={url}>
-            <ListItemButton> 
+            <ListItemButton>
               <ListItemIcon>
                 {icon}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
-            </Link>
           </ListItem>
         ))}
       </List>
@@ -144,13 +141,12 @@ function Backend(props) {
         
        {children} 
         
-        
       </Box>
     </Box>
   );
 }
 
-Backend.propTypes = {
+BackendWrapper.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -158,4 +154,4 @@ Backend.propTypes = {
   window: PropTypes.func,
 };
 
-export default Backend;
+export default BackendWrapper;

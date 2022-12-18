@@ -36,16 +36,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function GoodTable() {
+export default function SaleTable() {
     const [products,setProducts] = React.useState(null)
     const [addOpen,setAddOpen] = React.useState(false)
     const [editOpen,setEditOpen] = React.useState(false)
     const [productId,setProductId] = React.useState(null)
 
     if(products==null){
-        axios.get('http://localhost:8000/product/all')
+        axios.get('http://localhost:8000/rank/all')
         .then((resp)=>{
-            setProducts(resp.data.products)
+            setProducts(resp.data)
         })
         .catch((e)=>{
             console.log(e)
@@ -55,7 +55,7 @@ export default function GoodTable() {
 
   return (
     (products==null)?<CircularProgress/>:<>
-    <h1>商品管理</h1>
+    <h1>销售榜单</h1>
     <MyModal open={addOpen} >
         <AddProduct 
             onSuccess={()=>{
@@ -79,7 +79,6 @@ export default function GoodTable() {
     </MyModal>
    
        
-    <Button variant='contained' onClick={()=>setAddOpen(true)}>添加</Button>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -88,9 +87,8 @@ export default function GoodTable() {
             <StyledTableCell align="right">价格</StyledTableCell>
             <StyledTableCell align="right">分类</StyledTableCell>
             <StyledTableCell align="right">库存</StyledTableCell>
-            <StyledTableCell align="right">图片链接</StyledTableCell>
             <StyledTableCell align="right">描述</StyledTableCell>
-            <StyledTableCell align="right">操作</StyledTableCell>
+            <StyledTableCell align="right">销量</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -102,25 +100,10 @@ export default function GoodTable() {
               <StyledTableCell align="right">{row.price}</StyledTableCell>
               <StyledTableCell align="right">{row.category}</StyledTableCell>
               <StyledTableCell align="right">{row.stock}</StyledTableCell>
-              <StyledTableCell align="right">{row.imgurl}</StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
-              <StyledTableCell align="right">
-                <IconButton onClick={()=>{setEditOpen(true)}}>
-                    <Edit/>
-                </IconButton>
-                <IconButton onClick={()=>{
-                    axios.get('http://localhost:8000/product/delete',{
-                        params:{
-                            product_id:row.id
-                        }
-                    }).then(resp=>{
-                        setProducts(null) // 强制它刷新
-                    })
-                }}>
-                    <Delete/>
-                </IconButton>
+              <StyledTableCell align="right">{row.sale}</StyledTableCell>
+              
 
-              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
