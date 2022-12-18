@@ -44,7 +44,7 @@ export default function MyOrderTable() {
 
     if(products==null && typeof window !== 'undefined'){
         var user_id = localStorage.getItem('user_id')
-        axios.get('http://localhost:8000/order/userid',{
+        axios.get('api/order/userid',{
           params:{
             user_id:user_id
           }

@@ -6,7 +6,7 @@ import MyModal from '../modal';
 import axios from 'axios';
 import UploadButton from '../uploadImageButton';
 function getImgUrlFromUuidName(uuidName){
-    return 'http://localhost:8000/pics/?fname=' + uuidName
+    return 'api/pics/?fname=' + uuidName
 }
 export default function AddProduct({onSuccess, setClose}) {
   const [open, setOpen] = React.useState(false);
@@ -22,7 +22,7 @@ export default function AddProduct({onSuccess, setClose}) {
         
   var add = (name,price,category,stock,description,imgurl)=>{
         
-        axios.get('http://localhost:8000/product/add',{
+        axios.get('api/product/add',{
         params:{
             name:name,
             price:price,

@@ -21,7 +21,7 @@ export default function UploadButton({handleDetail}) {
         // Details of the uploaded file
         console.log(file);
        
-        axios.post("http://127.0.0.1:8000/upload", formData, {
+        axios.post("api/upload", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             }},)

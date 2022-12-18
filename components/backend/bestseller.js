@@ -43,7 +43,7 @@ export default function SaleTable() {
     const [productId,setProductId] = React.useState(null)
 
     if(products==null){
-        axios.get('http://localhost:8000/rank/all')
+        axios.get('api/rank/all')
         .then((resp)=>{
             setProducts(resp.data)
         })

@@ -43,7 +43,7 @@ export default function GoodTable() {
     const [productId,setProductId] = React.useState(null)
 
     if(products==null){
-        axios.get('http://localhost:8000/product/all')
+        axios.get('api/product/all')
         .then((resp)=>{
             setProducts(resp.data.products)
         })
@@ -109,7 +109,7 @@ export default function GoodTable() {
                     <Edit/>
                 </IconButton>
                 <IconButton onClick={()=>{
-                    axios.get('http://localhost:8000/product/delete',{
+                    axios.get('api/product/delete',{
                         params:{
                             product_id:row.id
                         }

@@ -157,7 +157,7 @@ function NavBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link href={page.link}>
+                  <Link key={page.name} href={page.link}>
                   <Typography textAlign="center">{page.name}</Typography>
                   </Link>
                 </MenuItem>
@@ -185,7 +185,7 @@ function NavBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-               <Link href={page.link}>
+               <Link key={page.name} href={page.link}>
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}

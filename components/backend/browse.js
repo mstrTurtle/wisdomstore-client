@@ -43,7 +43,7 @@ export default function BrowseTable() {
     const [productId,setProductId] = React.useState(null)
 
     if(products==null){
-        axios.get('http://localhost:8000/visit/all')
+        axios.get('api/visit/all')
         .then((resp)=>{
             setProducts(resp.data)
         })

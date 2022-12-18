@@ -39,7 +39,7 @@ export default function SaleTable() {
     const [addOpen,setAddOpen] = React.useState(false)
 
     if(products==null){
-        axios.get('http://localhost:8000/rank/all')
+        axios.get('api/rank/all')
         .then((resp)=>{
             setProducts(resp.data.details)
         })

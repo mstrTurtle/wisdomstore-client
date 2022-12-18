@@ -27,7 +27,7 @@ export default function Cart({ children }) {
         var user_id = localStorage.getItem('user_id')
         if(user_id){
             
-        axios.get('http://127.0.0.1:8000/cart',{
+        axios.get('/api/cart',{
             params:{
                 user_id: user_id
             }
@@ -40,7 +40,7 @@ export default function Cart({ children }) {
     }
 
     function createOrder(user_id,name,addr,phone){
-         axios.get('http://localhost:8000/order/create', {
+         axios.get('/api/order/create', {
             params:{
                 user_id:user_id,
                 name:name,
@@ -59,7 +59,7 @@ export default function Cart({ children }) {
 
     function removeItem(user_id, product_id){
         console.log(`removing: ${user_id} - ${product_id}`)
-        axios.get('http://127.0.0.1:8000/cart/remove',{
+        axios.get('/api/cart/remove',{
             params:{
                 user_id,
                 product_id,

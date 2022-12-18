@@ -7,7 +7,7 @@ import MyModal from '../../components/modal'
 import Layout from '../../components/layout'
 
 var getProductDetail = (pid, updateDetail)=>{
-    axios.get('http://localhost:8000/product',{
+    axios.get('api/product',{
         params:{
             id: pid
         }
@@ -40,7 +40,7 @@ const Post = () => {
   }
 
   var doAddCart = (user_id,product_id,count)=>{
-    axios.get('http://127.0.0.1:8000/cart/add',{
+    axios.get('api/cart/add',{
       params:{
         user_id:user_id,
         product_id:product_id,
@@ -61,7 +61,7 @@ const Post = () => {
         var user_id = localStorage.getItem('user_id')
         setVisited(true)
         if(user_id)
-          axios.get('http://localhost:8000/visit/add',{
+          axios.get('api/visit/add',{
               params:{
                   user_id:user_id,
                   product_id:pid
