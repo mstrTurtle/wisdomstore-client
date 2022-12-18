@@ -30,15 +30,16 @@ export default function SearchResults(){
     const router = useRouter()
     const {name} = router.query
     const [latestName,setLatestName] = useState(null)
-    if(!latestName){
+    if(name!=latestName){
         setLatestName(name)
+        setResult(null)
     }
-    useEffect(()=>{
-        if(name!=latestName){
-            setLatestName(name)
-            setResult(null)
-        }
-    })
+    // useEffect(()=>{
+    //     if(name!=latestName){
+    //         setLatestName(name)
+    //         setResult(null)
+    //     }
+    // })
 
     if(result==null){
         elem = <CircularProgress/>

@@ -24,9 +24,6 @@ export default function SearchResults(){
     const [result,setResult] = useState(null)
     var elem = null
 
-    useEffect(()=>{
-        setResult(null)
-    })
 
     if(result==null){
         elem = <CircularProgress/>
