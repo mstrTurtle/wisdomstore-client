@@ -7,7 +7,7 @@ import NavBar from "../../components/nav"
 import Layout from "../../components/layout"
  var getSearchResults = (name,setResult)=>{
     console.log(name)
-    axios.get('api/product/category', {
+    axios.get('myapi/product/category', {
         params:{
             category:name
         }
