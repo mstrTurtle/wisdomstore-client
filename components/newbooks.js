@@ -29,10 +29,10 @@ export default function NewBooks({ children }) {
     <div>
       <Grid container>
       <Grid item xs={3}><div onMouseEnter={onFst} onMouseLeave={onHover}>
-        <img src='https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F1265897-ba0d898c63e4c821.jpg&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673947450&t=31ce12dd8d0bf22e509f7ef55b9e9c3d' style={{'max-width':'100%','max-height':'100%'}}></img>
+        <img src='https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F1265897-ba0d898c63e4c821.jpg&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673947450&t=31ce12dd8d0bf22e509f7ef55b9e9c3d' style={{'maxWidth':'100%','maxHeight':'100%'}}></img>
         </div></Grid>
       <Grid item xs={3}><div onMouseEnter={onSnd} onMouseLeave={onHover}>
-        <img src='http://collection.sinaimg.cn/yjjj/20131225/U5826P1081T2D138067F6DT20131225081830.jpg' style={{'max-width':'100%','max-height':'100%'}}></img>
+        <img src='http://collection.sinaimg.cn/yjjj/20131225/U5826P1081T2D138067F6DT20131225081830.jpg' style={{'maxWidth':'100%','maxHeight':'100%'}}></img>
         </div></Grid>
       <Grid item xs={6}><p>{content}</p></Grid>
       </Grid>
