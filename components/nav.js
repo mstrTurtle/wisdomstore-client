@@ -22,11 +22,10 @@ import Cart from './cart';
 import UserStatus from './userstatus';
 import Router from 'next/router'
 
-const pages = [{name:'浏览',link:'/posts/first-post'}, {name:'后端',link:'/backend'}, {name:'首页',link:'/'}];
+
 const settings = [
-  {text:'Profile', onC:()=>{}}, 
-  {text:'Account', onC:()=>{}},
-  {text:'Logout', onC:()=>{localStorage.removeItem('user_id'); Router.reload(window.location.pathname);}},
+  {text:'我的订单', onC:()=>{}}, 
+  {text:'注销', onC:()=>{localStorage.removeItem('user_id'); Router.reload(window.location.pathname);}},
 ]
 
 
@@ -76,7 +75,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [showCart, setShowCart] = React.useState(null);
+  const [showCart, setShowCart] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -92,9 +91,14 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  if(typeof window !== 'undefined')
+  var pages = [{name:'浏览',link:'/posts/first-post'}, {name:'首页',link:'/'}];
+  if(typeof window !== 'undefined'){
     var user_id = localStorage.getItem('user_id')
+    var user_name = localStorage.getItem('user_name')
+    console.log(user_id)
+    console.log(user_id=='1')
+    pages.push({name:'后端',link:'/backend'})
+  }
   React.useEffect(()=>{
     user_id = localStorage.getItem('user_id')
   })
@@ -119,7 +123,7 @@ function NavBar() {
               textDecoration: 'none',
             }}
           >
-            传智书城
+            传智商城
           </Typography></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -199,6 +203,12 @@ function NavBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onKeyUp={(e)=>{
+                if(e.keyCode===13){
+                    Router.push('/search/'+e.target.value)
+                }
+                console.log(e.target.value)
+            }}
             />
           </Search>
           <ShoppingCart onClick={()=>{setShowCart(true)}} sx={{margin:2}}></ShoppingCart>
@@ -212,7 +222,7 @@ function NavBar() {
           <Box sx={{ flexGrow: 0 }}>
             {user_id?
             <>
-            <span>{user_id}</span>
+            <span>{user_id} - {user_name}</span>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/images/profile.jpg" />

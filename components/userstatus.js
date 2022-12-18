@@ -3,6 +3,7 @@ import Login from "./login";
 import MyModal from "./modal";
 import Register from "./register";
 import React from "react";
+import Router from "next/router";
 export default function UserStatus({logined}) {
 
     const [login, setLogin] = React.useState(false)
@@ -17,7 +18,7 @@ export default function UserStatus({logined}) {
             <Register onSuccess={()=>{setRegister(false)}}></Register>
         </MyModal>
         <MyModal open={login}>
-            <Login onSuccess={()=>{setLogin(false)}}></Login>
+            <Login onSuccess={()=>{setLogin(false);Router.reload(window.location.pathname);}}></Login>
         </MyModal>
     </>
 }

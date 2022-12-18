@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css';
 import NavBar from '../components/nav';
+import Category from '../components/categories';
+import MySearchBar from '../components/mysearch';
 
 export default function Home() {
   return (
@@ -15,8 +17,11 @@ export default function Home() {
 
       <main>
         <h1>
-          欢迎来到传智书城!
+          欢迎来到传智商城!
         </h1>
+        <h2>尝试搜索商品</h2>
+        <MySearchBar></MySearchBar>
+        <Category></Category>
 
       </main>
 

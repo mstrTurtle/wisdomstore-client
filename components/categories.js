@@ -1,6 +1,7 @@
 import styles from './category.module.css';
 import Link from 'next/link';
 import Layout from './layout';
+import { Grid } from '@mui/material';
 var cats = [
 "药水",
 "商务管理",
@@ -19,21 +20,20 @@ export default function Category({ children }) {
       
         products.forEach((product) => {
           rows.push(
-           <li key={product} ><Link className={styles.category} href={"/category/"+product}>{product}</Link></li>
+           <Grid item  key={product} xs={4} ><Link className={styles.category} href={"/category/"+product}>{product}</Link></Grid>
           );
         });
 
         return (
-           <ul className={styles.category}>
+           <Grid container>
             {rows}
-            </ul>
+            </Grid>
           );
         }
 
   return <div className={styles.category}>
-    <h1  >按分类浏览</h1>
+    <h2  >按分类浏览</h2>
     <ProductTable className={styles.category} products={cats}/>
-    <ul className={styles.category}>
-            </ul>
+ 
   </div>;
 }

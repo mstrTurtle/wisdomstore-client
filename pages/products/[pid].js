@@ -82,7 +82,7 @@ const Post = () => {
   <p>Description : {detail.detail.description}</p>
   <Button variant='contained' onClick={addCart}>加购物车</Button>
   <MyModal open={addSuccess}>
-    加购成功!
+    <div>加购成功!</div>
     <Button variant='contained' onClick={()=>{setAddSuccess(false)}}>好</Button>
   </MyModal>
   </>:<>

@@ -20,7 +20,6 @@ import { EmojiEvents, History, Home, Info, LineAxis, People, Receipt, Warehouse 
 import { useRouter } from 'next/router';
 import { Button } from '@mui/material';
 import GoodTable from '../../components/backend/good';
-import BackendWrapper from '../../components/backendWrapper';
 import AddProduct from '../../components/backend/addGood';
 import Backend from '../../components/backend';
 import SaleTable from '../../components/backend/bestseller';

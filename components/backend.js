@@ -100,7 +100,7 @@ function Backend(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            传智书城 - 管理后台
+            传智商城 - 管理后台
           </Typography>
         </Toolbar>
       </AppBar>

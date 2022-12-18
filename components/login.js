@@ -25,6 +25,7 @@ export default function FormPropsTextFields({onSuccess,onFailure}) {
             if(resp.data.status=='Ok'){
                 setOpen(true) ;
                 localStorage.setItem('user_id',resp.data.user_id)
+                localStorage.setItem('user_name',resp.data.name)
                 Router.reload(window.location.pathname);
             }else{
                 setFail(true)
@@ -55,7 +56,7 @@ export default function FormPropsTextFields({onSuccess,onFailure}) {
         <TextField
           id="outlined-helperText"
           label="用户名"
-          defaultValue="Default Value"
+          defaultValue=""
           helperText="请输入账户名"
           inputRef={name}
         />
