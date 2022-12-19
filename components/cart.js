@@ -40,6 +40,8 @@ export default function Cart({ children }) {
     }
 
     function createOrder(user_id,name,addr,phone){
+        // 负责新建订单的函数
+        // 向order/create进行请求. 参数有四个, 在axios.get传参过程中指定.
          axios.get('/myapi/order/create', {
             params:{
                 user_id:user_id,
@@ -47,17 +49,18 @@ export default function Cart({ children }) {
                 addr:addr,
                 phone:phone
             }
-        }).then(resp=>{
-            if (resp.data.status=='Ok')
-                setSuccessOpen(true)
+        }).then(resp=>{ // 如果请求成功, 异步地处理响应
+            if (resp.data.status=='Ok') // 如果响应的json中, status为Ok
+                setSuccessOpen(true) // 那么, 打开成功对话框
             else
-                setFailOpen(true)
-        }).catch(e=>{
-            setFailOpen(true)
+                setFailOpen(true) // 否则, 打开失败对话框
+        }).catch(e=>{ // 如果请求过程中, 内部或网络失败
+            setFailOpen(true) // 也打开失败对话框
         })
     }
 
     function removeItem(user_id, product_id){
+        // 移除购物车商品的函数
         console.log(`removing: ${user_id} - ${product_id}`)
         axios.get('/myapi/cart/remove',{
             params:{
@@ -89,7 +92,9 @@ export default function Cart({ children }) {
 
     return <div className={styles.cart}>
         <h1>Cart</h1>
-        {items?<>{items.length==0?<div>Empty Cart</div>:<><CartList className={styles.cart} items={items} />
+        {items // 如果购物车商品已经获得, 那么展示商品
+        ?<>
+        {items.length==0?<div>Empty Cart</div>:<><CartList className={styles.cart} items={items} />
         <div><TextField label="收货人姓名" inputRef={name}/></div>
         <div><TextField label="收货地址" inputRef={addr}/></div>
         <div><TextField label="收货电话" inputRef={phone}/></div>
@@ -111,7 +116,7 @@ export default function Cart({ children }) {
        </MyModal>
        </>}
 
-               </>:
+        </>: // 否则, 展示环形旋转进度条
         
         <>
         <CircularProgress/>
