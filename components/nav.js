@@ -97,7 +97,8 @@ function NavBar() {
     var user_name = localStorage.getItem('user_name')
     console.log(user_id)
     console.log(user_id=='1')
-    pages.push({name:'后端',link:'/backend'})
+    if(user_id=='1')
+      pages.push({name:'后端',link:'/backend'})
   }
   React.useEffect(()=>{
     user_id = localStorage.getItem('user_id')
