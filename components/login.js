@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Button, Stack } from '@mui/material';
 import MyModal from './modal';
 import axios from 'axios';
-import { Router } from 'next/router';
+import Router from 'next/router';
 export default function FormPropsTextFields({onSuccess,onFailure}) {
   const [open, setOpen] = React.useState(false);
   const [fail,setFail] = React.useState(false);
@@ -31,7 +31,7 @@ export default function FormPropsTextFields({onSuccess,onFailure}) {
                 setFail(true)
             }
         }).catch(function (error) {
-            setFail(true)
+          console.log("登录引发了错误:");
             console.log(error);
         })
     }
