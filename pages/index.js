@@ -11,7 +11,7 @@ export default function Home() {
     <NavBar></NavBar>
     <div className={styles.container}>
       <Head>
-        <title>Home - Springer</title>
+        <title>传智商城 - 首页</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
