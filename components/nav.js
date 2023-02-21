@@ -24,7 +24,7 @@ import Router from 'next/router'
 
 
 const settings = [
-  {text:'我的订单', onC:()=>{}}, 
+  {text:'我的订单', onC:()=>{Router.push('/myorder/'+localStorage.getItem('user_id'));}}, 
   {text:'注销', onC:()=>{localStorage.removeItem('user_id'); Router.reload(window.location.pathname);}},
 ]
 
