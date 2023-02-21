@@ -19,7 +19,7 @@ export default function Home() {
         <h1>
           欢迎来到传智商城!
         </h1>
-        <h2>尝试搜索商品</h2>
+        <h2>尝试搜索商品或<Link href="newbooks">浏览新品</Link></h2>
         <MySearchBar></MySearchBar>
         <Category></Category>
 
